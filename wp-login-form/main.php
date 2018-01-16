@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.1
+Version: 1.0.2
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -15,7 +15,7 @@ if(!class_exists('WPLF_LOGIN_FORM'))
 {
     class WPLF_LOGIN_FORM
     {
-        var $plugin_version = '1.0.1';
+        var $plugin_version = '1.0.2';
         var $plugin_url;
         var $plugin_path;
         function __construct()
@@ -30,7 +30,7 @@ if(!class_exists('WPLF_LOGIN_FORM'))
         {
             if(is_admin( ) )
             {
-                //add_filter('plugin_action_links', array($this,'add_plugin_action_links'), 10, 2 );
+                add_filter('plugin_action_links', array($this,'add_plugin_action_links'), 10, 2 );
             }
             add_action('plugins_loaded', array($this, 'plugins_loaded_handler'));
             add_action('admin_menu', array($this, 'add_options_menu' ));
@@ -73,7 +73,12 @@ if(!class_exists('WPLF_LOGIN_FORM'))
         
         function display_options_page()
         {           
-            
+            $url = "https://noorsplugin.com/wordpress-login-form-plugin/";
+            $link_text = sprintf(wp_kses(__('Please visit the <a target="_blank" href="%s">WP Login Form</a> documentation page for usage instructions.', 'wp-login-form'), array('a' => array('href' => array(), 'target' => array()))), esc_url($url));          
+            echo '<div class="wrap">';               
+            echo '<h2>WP Login Form - v'.$this->plugin_version.'</h2>';
+            echo '<div class="update-nag">'.$link_text.'</div>';
+            echo '</div>'; 
         }
     }
     $GLOBALS['wplf_login_form'] = new WPLF_LOGIN_FORM();
@@ -145,6 +150,8 @@ function wplf_login_form_handler($atts)
     }
     else{
         $login_form .= wp_login_form($args);
+        $lost_password_link = '<a href="'.wp_lostpassword_url().'">'.__('Lost your password?', 'wp-login-form').'</a>';
+        $login_form .= $lost_password_link;
     }
     return $login_form;
 }
