@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.2
+Version: 1.0.3
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -15,7 +15,7 @@ if(!class_exists('WPLF_LOGIN_FORM'))
 {
     class WPLF_LOGIN_FORM
     {
-        var $plugin_version = '1.0.2';
+        var $plugin_version = '1.0.3';
         var $plugin_url;
         var $plugin_path;
         function __construct()
@@ -100,6 +100,7 @@ function wplf_login_form_handler($atts)
         'remember' => '',
         'value_username' => '',
         'value_remember' => '',
+        'lost_password' => '',
     ), $atts));
     
     $args = array();
@@ -150,8 +151,10 @@ function wplf_login_form_handler($atts)
     }
     else{
         $login_form .= wp_login_form($args);
-        $lost_password_link = '<a href="'.wp_lostpassword_url().'">'.__('Lost your password?', 'wp-login-form').'</a>';
-        $login_form .= $lost_password_link;
+        if(isset($lost_password) && $lost_password != "0"){
+            $lost_password_link = '<a href="'.wp_lostpassword_url().'">'.__('Lost your password?', 'wp-login-form').'</a>';
+            $login_form .= $lost_password_link;
+        }
     }
     return $login_form;
 }

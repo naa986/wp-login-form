@@ -4,7 +4,7 @@ Donate link: https://noorsplugin.com/
 Tags: login, form, user, custom login, wordpress login
 Requires at least: 3.0
 Tested up to: 4.9
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -126,6 +126,14 @@ Specify whether the "Remember Me" checkbox in the form should be checked by defa
 
 The default is "0" (false).
 
+**lost_password**
+
+Specify whether to display the "Lost your password?" link in the form. For example,
+
+`[wp_login_form lost_password="0"]`
+
+The default is "1" (true).
+
 For detailed documentation please visit the [WordPress Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) plugin page
 
 
@@ -154,6 +162,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.3 =
+* Added an option to show/hide the "Lost your password?" link in the form.
 
 = 1.0.2 =
 * Added an option to the login form to reset a password
