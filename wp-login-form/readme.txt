@@ -14,7 +14,7 @@ Create a WordPress login form and add it to your post, page or sidebar
 
 [WordPress Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) allows you to create a simple login form for use anywhere on the front end of your WordPress site. You can add it to a post, page or your sidebar with a shortcode.
 
-= WordPress Login Form Creation =
+=== How to Create a WordPress Login Form ===
 
 In order to create a WordPress login form with the default options all you need to do is use this shortcode:
 
