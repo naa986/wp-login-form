@@ -1,4 +1,4 @@
-=== WP Login Form ===
+=== WordPress Login Form ===
 Contributors: naa986
 Donate link: https://noorsplugin.com/
 Tags: login, form, user, custom login, wordpress login
@@ -8,19 +8,19 @@ Stable tag: 1.0.3
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Create a WordPress user login form and add it to your post, page or sidebar
+Create a WordPress login form and add it to your post, page or sidebar
 
 == Description ==
 
-[WP Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) allows you to create a simple login form for use anywhere on the front end of your WordPress site. You can add it to a post, page or your sidebar with a shortcode.
+[WordPress Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) allows you to create a simple login form for use anywhere on the front end of your WordPress site. You can add it to a post, page or your sidebar with a shortcode.
 
-= WP Login Form Creation =
+= WordPress Login Form Creation =
 
 In order to create a WordPress login form with the default options all you need to do is use this shortcode:
 
 `[wp_login_form]`
 
-However, they are other parameters that you can pass in the shortcode to customize it.
+However, there are other parameters that you can pass in the shortcode to customize it.
 
 **redirect**
 
@@ -104,7 +104,7 @@ The default is "wp-submit".
 
 **remember**
 
-Specify whether to display the "Remember Me" checkbox in the form. For example,
+Specify whether to display the "Remember Me" checkbox in the WordPress login form. For example,
 
 `[wp_login_form remember="0"]`
 
@@ -146,11 +146,11 @@ For detailed documentation please visit the [WordPress Login Form](https://noors
 
 == Frequently Asked Questions ==
 
-= Can I use this plugin to create WordPress login form or Widget? =
+= Can I use this plugin to create a WordPress login form or Widget? =
 
 Yes.
 
-= Can I embed the login form into a post/page? =
+= Can I embed the WordPress login form into a post/page? =
 
 Yes.
 
