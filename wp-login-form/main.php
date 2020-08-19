@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.3
+Version: 1.0.4
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -15,7 +15,7 @@ if(!class_exists('WPLF_LOGIN_FORM'))
 {
     class WPLF_LOGIN_FORM
     {
-        var $plugin_version = '1.0.3';
+        var $plugin_version = '1.0.4';
         var $plugin_url;
         var $plugin_path;
         function __construct()
@@ -86,7 +86,7 @@ if(!class_exists('WPLF_LOGIN_FORM'))
 
 function wplf_login_form_handler($atts)
 {
-    extract(shortcode_atts(array(
+    $atts = shortcode_atts(array(
         'redirect' => '',
         'form_id' => '',
         'label_username' => '',
@@ -101,8 +101,9 @@ function wplf_login_form_handler($atts)
         'value_username' => '',
         'value_remember' => '',
         'lost_password' => '',
-    ), $atts));
-    
+    ), $atts);
+    $atts = array_map('sanitize_text_field', $atts);
+    extract($atts);
     $args = array();
     $args['echo'] = "0";
     if(isset($redirect) && $redirect != ""){
