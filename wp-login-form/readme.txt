@@ -3,8 +3,8 @@ Contributors: naa986
 Donate link: https://noorsplugin.com/
 Tags: login, form, user, custom login, wordpress login
 Requires at least: 3.0
-Tested up to: 5.5
-Stable tag: 1.0.4
+Tested up to: 5.6
+Stable tag: 1.0.5
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -130,11 +130,19 @@ The default is "0" (false).
 
 **lost_password**
 
-Specify whether to display the "Lost your password?" link in the form. For example,
+Specify whether to display a lost password link in the form. For example,
 
 `[wp_login_form lost_password="0"]`
 
 The default is "1" (true).
+
+**label_lost_password**
+
+Your custom label for the lost password link. For example,
+
+`[wp_login_form label_lost_password="Reset Password"]`
+
+The default is "Lost your password?".
 
 For detailed documentation please visit the [WordPress Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) plugin page
 
@@ -164,6 +172,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.5 =
+* Added an option to customize the "Lost your password?" message. 
 
 = 1.0.4 =
 * Made some security related improvements in the plugin
