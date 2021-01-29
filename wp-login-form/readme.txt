@@ -4,7 +4,7 @@ Donate link: https://noorsplugin.com/
 Tags: login, form, user, custom login, wordpress login
 Requires at least: 3.0
 Tested up to: 5.6
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -144,6 +144,13 @@ Your custom label for the lost password link. For example,
 
 The default is "Lost your password?".
 
+=== How to Enable Google reCAPTCHA ===
+
+WP Login Form supports Google reCAPTCHA v3 to protect your login form against spam and other types of automated abuse. To enable this feature, go to "Settings > WP Login Form" and configure these options.
+
+* Enable Google reCAPTCHA v3
+* Site Key
+
 For detailed documentation please visit the [WordPress Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) plugin page
 
 
@@ -172,6 +179,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.6 =
+* Added support for Google reCAPTCHA v3.
 
 = 1.0.5 =
 * Added an option to customize the "Lost your password?" message. 
