@@ -3,8 +3,8 @@ Contributors: naa986
 Donate link: https://noorsplugin.com/
 Tags: login, form, user, custom login, wordpress login
 Requires at least: 3.0
-Tested up to: 5.6
-Stable tag: 1.0.6
+Tested up to: 5.7
+Stable tag: 1.0.7
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -179,6 +179,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.7 =
+* Fixed an issue where the shortcode_tag filter was not returning any output for admin pages.
 
 = 1.0.6 =
 * Added support for Google reCAPTCHA v3.

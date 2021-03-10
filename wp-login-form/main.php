@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.6
+Version: 1.0.7
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -14,7 +14,7 @@ if(!defined('ABSPATH')) exit;
 
 class WPLF_LOGIN_FORM
 {
-    var $plugin_version = '1.0.6';
+    var $plugin_version = '1.0.7';
     var $plugin_url;
     var $plugin_path;
     function __construct()
@@ -47,9 +47,9 @@ class WPLF_LOGIN_FORM
             if('wp_login_form' != $tag){ //make sure it is the right shortcode
                 return $output;
             }
-            wp_enqueue_script('google-recaptcha'); //enqueue your script for printing
-            return $output;
-        }    
+            wp_enqueue_script('google-recaptcha'); //enqueue the script for printing          
+        }
+        return $output;
     }
     function plugin_url()
     {
