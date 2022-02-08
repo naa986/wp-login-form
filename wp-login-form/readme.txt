@@ -4,7 +4,7 @@ Donate link: https://noorsplugin.com/
 Tags: login, form, user, custom login, wordpress login
 Requires at least: 3.0
 Tested up to: 5.9
-Stable tag: 1.0.7
+Stable tag: 1.0.8
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -151,6 +151,10 @@ WP Login Form supports Google reCAPTCHA v3 to protect your login form against sp
 * Enable Google reCAPTCHA v3
 * Site Key
 
+=== WP Login Form Extensions ===
+
+* [Force Redirect](https://noorsplugin.com/wordpress-login-form-plugin/)
+
 For detailed documentation please visit the [WordPress Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) plugin page
 
 
@@ -179,6 +183,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.8 =
+* Added support for the force redirect option that can used to redirect all successful WordPress logins to a specific URL.
 
 = 1.0.7 =
 * Fixed an issue where the shortcode_tag filter was not returning any output for admin pages.

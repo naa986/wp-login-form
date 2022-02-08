@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.7
+Version: 1.0.8
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -14,7 +14,7 @@ if(!defined('ABSPATH')) exit;
 
 class WPLF_LOGIN_FORM
 {
-    var $plugin_version = '1.0.7';
+    var $plugin_version = '1.0.8';
     var $plugin_url;
     var $plugin_path;
     function __construct()
@@ -27,9 +27,10 @@ class WPLF_LOGIN_FORM
     }
     function plugin_includes()
     {
-        if(is_admin( ) )
+        if(is_admin())
         {
             add_filter('plugin_action_links', array($this,'add_plugin_action_links'), 10, 2 );
+            include_once('extensions/wp-login-form-extensions.php');
         }
         add_action('plugins_loaded', array($this, 'plugins_loaded_handler'));
         add_action('admin_menu', array($this, 'add_options_menu'));
@@ -85,7 +86,8 @@ class WPLF_LOGIN_FORM
     function display_options_page()
     {    
         $plugin_tabs = array(
-            'wp-login-form-settings' => __('General', 'wp-login-form')
+            'wp-login-form-settings' => __('General', 'wp-login-form'),
+            'wp-login-form-settings&action=extensions' => __('Extensions', 'wp-login-form')
         );
         $url = "https://noorsplugin.com/wordpress-login-form-plugin/";
         $link_text = sprintf(wp_kses(__('Please visit the <a target="_blank" href="%s">WP Login Form</a> documentation page for usage instructions.', 'wp-login-form'), array('a' => array('href' => array(), 'target' => array()))), esc_url($url));          
@@ -113,10 +115,27 @@ class WPLF_LOGIN_FORM
         $content .= '</h2>';
         echo $content;
 
-        $this->general_settings();
+        if(isset($_GET['action']))
+        { 
+            switch ($_GET['action'])
+            {
+                case 'extensions':
+                    wp_login_form_display_extensions();
+                    break;
+            }
+        }
+        else
+        {
+            $this->general_settings();
+        }
 
         echo '</div></div>';
         echo '</div>'; 
+    }
+    
+    function extensions_page()
+    {
+     
     }
 
     function general_settings() {
@@ -133,6 +152,8 @@ class WPLF_LOGIN_FORM
             if(isset($_POST['google_recaptcha_v3_site_key']) && !empty($_POST['google_recaptcha_v3_site_key'])){
                 $google_recaptcha_v3_site_key = sanitize_text_field($_POST['google_recaptcha_v3_site_key']);
             }
+            $post = $_POST;
+            do_action('wp_login_form_general_settings_submitted', $post);
             $options = array();
             $options['enable_google_recaptcha_v3'] = $enable_google_recaptcha_v3;
             $options['google_recaptcha_v3_site_key'] = $google_recaptcha_v3_site_key;
@@ -163,7 +184,13 @@ class WPLF_LOGIN_FORM
                         <td><input name="google_recaptcha_v3_site_key" type="text" id="google_recaptcha_v3_site_key" value="<?php echo esc_attr($options['google_recaptcha_v3_site_key']); ?>" class="regular-text">
                             <p class="description"><?Php _e('Your Google reCAPTCHA v3 site key', 'wp-login-form');?></p></td>
                     </tr>
-
+                    <?php
+                    $settings_fields = '';
+                    $settings_fields = apply_filters('wp_login_form_general_settings_fields', $settings_fields);
+                    if(!empty($settings_fields)){
+                        echo $settings_fields;
+                    }
+                    ?>
                 </tbody>
 
             </table>
