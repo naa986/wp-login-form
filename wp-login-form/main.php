@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.8
+Version: 1.0.9
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -14,7 +14,7 @@ if(!defined('ABSPATH')) exit;
 
 class WPLF_LOGIN_FORM
 {
-    var $plugin_version = '1.0.8';
+    var $plugin_version = '1.0.9';
     var $plugin_url;
     var $plugin_path;
     function __construct()
@@ -39,11 +39,19 @@ class WPLF_LOGIN_FORM
         add_shortcode('wp_login_form', 'wplf_login_form_handler');          
     }
     function register_plugin_scripts() {
+        $options = wp_login_form_get_option();
+        if(!isset($options['enable_google_recaptcha_v3']) || empty($options['enable_google_recaptcha_v3'])){
+            return;
+        }
         if (!is_admin()) {
             wp_register_script('google-recaptcha', 'https://www.google.com/recaptcha/api.js', array(), null);       
         }
     }
     function enqueue_plugin_scripts($output, $tag, $attr) {
+        $options = wp_login_form_get_option();
+        if(!isset($options['enable_google_recaptcha_v3']) || empty($options['enable_google_recaptcha_v3'])){
+            return $output;
+        }
         if (!is_admin()) {
             if('wp_login_form' != $tag){ //make sure it is the right shortcode
                 return $output;

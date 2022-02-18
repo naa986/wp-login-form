@@ -1,10 +1,10 @@
 === WordPress Login Form ===
 Contributors: naa986
-Donate link: https://noorsplugin.com/
-Tags: login, form, user, custom login, wordpress login
+Donate link: https://noorsplugin.com/wordpress-login-form-plugin/
+Tags: login, form, user, member, membership
 Requires at least: 3.0
 Tested up to: 5.9
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -183,6 +183,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.9 =
+* Fixed an issue with reCAPTCHA script loading when not enabled.
 
 = 1.0.8 =
 * Added support for the force redirect option that can used to redirect all successful WordPress logins to a specific URL.
