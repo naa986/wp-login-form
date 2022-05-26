@@ -3,7 +3,7 @@ Contributors: naa986
 Donate link: https://noorsplugin.com/wordpress-login-form-plugin/
 Tags: login, form, user, member, membership
 Requires at least: 3.0
-Tested up to: 5.9
+Tested up to: 6.0
 Stable tag: 1.0.9
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
