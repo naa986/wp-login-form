@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.9
+Version: 1.0.10
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -14,7 +14,7 @@ if(!defined('ABSPATH')) exit;
 
 class WPLF_LOGIN_FORM
 {
-    var $plugin_version = '1.0.9';
+    var $plugin_version = '1.0.10';
     var $plugin_url;
     var $plugin_path;
     function __construct()
@@ -30,13 +30,21 @@ class WPLF_LOGIN_FORM
         if(is_admin())
         {
             add_filter('plugin_action_links', array($this,'add_plugin_action_links'), 10, 2 );
-            include_once('extensions/wp-login-form-extensions.php');
+            include_once('addons/wp-login-form-addons.php');
         }
         add_action('plugins_loaded', array($this, 'plugins_loaded_handler'));
         add_action('admin_menu', array($this, 'add_options_menu'));
+        add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
         add_action('wp_enqueue_scripts', array($this, 'register_plugin_scripts'));
         add_filter('do_shortcode_tag', array($this, 'enqueue_plugin_scripts'), 10, 3);
         add_shortcode('wp_login_form', 'wplf_login_form_handler');          
+    }
+    function enqueue_admin_scripts($hook) {
+        if('settings_page_wp-login-form-settings' != $hook) {
+            return;
+        }
+        wp_register_style('wp-login-form-addons-menu', WPLF_LOGIN_FORM_URL.'/addons/wp-login-form-addons.css');
+        wp_enqueue_style('wp-login-form-addons-menu');
     }
     function register_plugin_scripts() {
         $options = wp_login_form_get_option();
@@ -95,19 +103,25 @@ class WPLF_LOGIN_FORM
     {    
         $plugin_tabs = array(
             'wp-login-form-settings' => __('General', 'wp-login-form'),
-            'wp-login-form-settings&action=extensions' => __('Extensions', 'wp-login-form')
+            'wp-login-form-settings&action=addons' => __('Add-ons', 'wp-login-form')
         );
         $url = "https://noorsplugin.com/wordpress-login-form-plugin/";
-        $link_text = sprintf(wp_kses(__('Please visit the <a target="_blank" href="%s">WP Login Form</a> documentation page for usage instructions.', 'wp-login-form'), array('a' => array('href' => array(), 'target' => array()))), esc_url($url));          
-        echo '<div class="wrap">';               
-        echo '<h2>WP Login Form - v'.$this->plugin_version.'</h2>';
-        echo '<div class="notice notice-info">'.$link_text.'</div>';
-        echo '<div id="poststuff"><div id="post-body">';
-
+        $link_text = sprintf(__('Please visit the <a target="_blank" href="%s">WP Login Form</a> documentation page for setup instructions.', 'wp-login-form'), esc_url($url));          
+        $allowed_html_tags = array(
+            'a' => array(
+                'href' => array(),
+                'target' => array()
+            )
+        );
+        echo '<div class="wrap"><h2>WP Login Form - v'.WPLF_LOGIN_FORM_VERSION.'</h2>';               
+        echo '<div class="update-nag">'.wp_kses($link_text, $allowed_html_tags).'</div>';
+        $current = '';
+        $action = '';
         if (isset($_GET['page'])) {
             $current = sanitize_text_field($_GET['page']);
             if (isset($_GET['action'])) {
-                $current .= "&action=" . sanitize_text_field($_GET['action']);
+                $action = sanitize_text_field($_GET['action']);
+                $current .= "&action=" . $action;
             }
         }
         $content = '';
@@ -121,14 +135,24 @@ class WPLF_LOGIN_FORM
             $content .= '<a class="nav-tab' . $class . '" href="?page=' . $location . '">' . $tabname . '</a>';
         }
         $content .= '</h2>';
-        echo $content;
+        $allowed_html_tags = array(
+            'a' => array(
+                'href' => array(),
+                'class' => array()
+            ),
+            'h2' => array(
+                'href' => array(),
+                'class' => array()
+            )
+        );
+        echo wp_kses($content, $allowed_html_tags);
 
-        if(isset($_GET['action']))
+        if(!empty($action))
         { 
-            switch ($_GET['action'])
+            switch($action)
             {
-                case 'extensions':
-                    wp_login_form_display_extensions();
+                case 'addons':
+                    wp_login_form_display_addons();
                     break;
             }
         }
@@ -137,13 +161,7 @@ class WPLF_LOGIN_FORM
             $this->general_settings();
         }
 
-        echo '</div></div>';
         echo '</div>'; 
-    }
-    
-    function extensions_page()
-    {
-     
     }
 
     function general_settings() {
@@ -174,7 +192,7 @@ class WPLF_LOGIN_FORM
 
         ?>
 
-        <form method="post" action="<?php echo $_SERVER["REQUEST_URI"]; ?>">
+        <form method="post" action="">
             <?php wp_nonce_field('wp_login_form_general_settings'); ?>
 
             <table class="form-table">
@@ -188,9 +206,9 @@ class WPLF_LOGIN_FORM
                     </tr>
 
                     <tr valign="top">
-                        <th scope="row"><label for="google_recaptcha_v3_site_key"><?Php _e('Site Key', 'wp-login-form');?></label></th>
+                        <th scope="row"><label for="google_recaptcha_v3_site_key"><?php _e('Site Key', 'wp-login-form');?></label></th>
                         <td><input name="google_recaptcha_v3_site_key" type="text" id="google_recaptcha_v3_site_key" value="<?php echo esc_attr($options['google_recaptcha_v3_site_key']); ?>" class="regular-text">
-                            <p class="description"><?Php _e('Your Google reCAPTCHA v3 site key', 'wp-login-form');?></p></td>
+                            <p class="description"><?php _e('Your Google reCAPTCHA v3 site key', 'wp-login-form');?></p></td>
                     </tr>
                     <?php
                     $settings_fields = '';
@@ -203,7 +221,7 @@ class WPLF_LOGIN_FORM
 
             </table>
 
-            <p class="submit"><input type="submit" name="wp_login_form_update_settings" id="wp_login_form_update_settings" class="button button-primary" value="<?Php _e('Save Changes', 'wp-login-form');?>"></p></form>
+            <p class="submit"><input type="submit" name="wp_login_form_update_settings" id="wp_login_form_update_settings" class="button button-primary" value="<?php _e('Save Changes', 'wp-login-form');?>"></p></form>
 
         <?php
     }
@@ -230,12 +248,12 @@ function wplf_login_form_handler($atts)
         'lost_password' => '',
         'label_lost_password' => '',
     ), $atts);
-    $atts = array_map('sanitize_text_field', $atts);
+    $atts = map_deep($atts, 'sanitize_text_field');
     extract($atts);
     $args = array();
     $args['echo'] = "0";
     if(isset($redirect) && $redirect != ""){
-        $args['redirect'] = esc_url($redirect);
+        $args['redirect'] = esc_url_raw($redirect);
     }
     if(isset($form_id) && $form_id != ""){
         $args['form_id'] = $form_id; //changing the default id breaks the login form functionality

@@ -4,7 +4,7 @@ Donate link: https://noorsplugin.com/wordpress-login-form-plugin/
 Tags: login, form, user, member, membership
 Requires at least: 3.0
 Tested up to: 6.0
-Stable tag: 1.0.9
+Stable tag: 1.0.10
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -151,7 +151,7 @@ WP Login Form supports Google reCAPTCHA v3 to protect your login form against sp
 * Enable Google reCAPTCHA v3
 * Site Key
 
-=== WP Login Form Extensions ===
+=== WP Login Form Add-ons ===
 
 * [Force Redirect](https://noorsplugin.com/wordpress-login-form-plugin/)
 
@@ -183,6 +183,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.10 =
+* Made some improvements in the settings area.
 
 = 1.0.9 =
 * Fixed an issue with reCAPTCHA script loading when not enabled.
