@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.11
+Version: 1.0.12
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -14,7 +14,7 @@ if(!defined('ABSPATH')) exit;
 
 class WPLF_LOGIN_FORM
 {
-    var $plugin_version = '1.0.11';
+    var $plugin_version = '1.0.12';
     var $plugin_url;
     var $plugin_path;
     function __construct()
@@ -29,7 +29,6 @@ class WPLF_LOGIN_FORM
     {
         if(is_admin())
         {
-            add_filter('plugin_action_links', array($this,'add_plugin_action_links'), 10, 2 );
             include_once('addons/wp-login-form-addons.php');
         }
         add_action('plugins_loaded', array($this, 'plugins_loaded_handler'));
@@ -88,6 +87,10 @@ class WPLF_LOGIN_FORM
 
     function plugins_loaded_handler()
     {
+        if(is_admin() && current_user_can('manage_options'))
+        {
+            add_filter('plugin_action_links', array($this,'add_plugin_action_links'), 10, 2 );
+        }
         load_plugin_textdomain('wp-login-form', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/'); 
     }
 
