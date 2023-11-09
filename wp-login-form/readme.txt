@@ -1,9 +1,9 @@
-=== WordPress Login Form ===
+=== WP Login Form ===
 Contributors: naa986
 Donate link: https://noorsplugin.com/wordpress-login-form-plugin/
 Tags: login, form, user, member, membership
 Requires at least: 3.0
-Tested up to: 6.3
+Tested up to: 6.4
 Stable tag: 1.0.12
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -12,7 +12,7 @@ Create a WordPress login form and add it to your post, page or sidebar
 
 == Description ==
 
-[WordPress Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) allows you to create a simple login form for use anywhere on the front end of your WordPress site. You can add it to a post, page or your sidebar with a shortcode.
+[WP Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) allows you to create a simple login form for use anywhere on the front end of your WordPress site. You can add it to a post, page or your sidebar with a shortcode.
 
 === How to Create a Custom Login Page for WordPress ===
 
