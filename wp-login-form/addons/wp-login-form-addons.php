@@ -16,6 +16,14 @@ function wp_login_form_display_addons()
     );
     array_push($addons_data, $addon_1);
     
+    $addon_2 = array(
+        'name' => 'Custom Error',
+        'thumbnail' => WPLF_LOGIN_FORM_URL.'/addons/images/wp-login-form-custom-error.png',
+        'description' => 'Keep the user on the login form page and show custom error messages after a failed login',
+        'page_url' => 'https://noorsplugin.com/wordpress-login-form-custom-error/',
+    );
+    array_push($addons_data, $addon_2);
+    
     //Display the list
     foreach ($addons_data as $addon) {
         ?>

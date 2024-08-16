@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.12
+Version: 1.0.13
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -14,7 +14,7 @@ if(!defined('ABSPATH')) exit;
 
 class WPLF_LOGIN_FORM
 {
-    var $plugin_version = '1.0.12';
+    var $plugin_version = '1.0.13';
     var $plugin_url;
     var $plugin_path;
     function __construct()
@@ -250,6 +250,7 @@ function wplf_login_form_handler($atts)
         'value_remember' => '',
         'lost_password' => '',
         'label_lost_password' => '',
+        'custom_error' => '',
     ), $atts);
     $atts = map_deep($atts, 'sanitize_text_field');
     extract($atts);
@@ -300,7 +301,13 @@ function wplf_login_form_handler($atts)
         $login_form .= wp_loginout(esc_url($_SERVER['REQUEST_URI']), false);
     }
     else{
-        $login_form .= wp_login_form($args);
+        $temp_form = wp_login_form($args);
+        $form_with_custom_error = '';
+        $form_with_custom_error = apply_filters('wp_login_form_with_custom_error', $form_with_custom_error, $args, $atts);
+        if(isset($form_with_custom_error) && !empty($form_with_custom_error)){
+            $temp_form = $form_with_custom_error;
+        }
+        $login_form .= $temp_form;
         if(isset($lost_password) && $lost_password != "0"){
             $lost_password_label = !empty($label_lost_password) ? $label_lost_password : 'Lost your password?';
             $lost_password_link = '<a class="wplf-lostpassword" href="'.esc_url(wp_lostpassword_url()).'">'.$lost_password_label.'</a>';

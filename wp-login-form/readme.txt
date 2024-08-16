@@ -4,7 +4,7 @@ Donate link: https://noorsplugin.com/wordpress-login-form-plugin/
 Tags: login, form, user, member, membership
 Requires at least: 3.0
 Tested up to: 6.6
-Stable tag: 1.0.12
+Stable tag: 1.0.13
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -13,6 +13,11 @@ Create a WordPress login form and add it to your post, page or sidebar
 == Description ==
 
 [WP Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) allows you to create a simple login form for use anywhere on the front end of your WordPress site. You can add it to a post, page or your sidebar with a shortcode.
+
+=== WP Login Form Add-ons ===
+
+* [Force Redirect](https://noorsplugin.com/wordpress-login-form-plugin/)
+* [Custom Error](https://noorsplugin.com/wordpress-login-form-custom-error/)
 
 === How to Create a Custom Login Page for WordPress ===
 
@@ -151,10 +156,6 @@ WP Login Form supports Google reCAPTCHA v3 to protect your login form against sp
 * Enable Google reCAPTCHA v3
 * Site Key
 
-=== WP Login Form Add-ons ===
-
-* [Force Redirect](https://noorsplugin.com/wordpress-login-form-plugin/)
-
 For detailed documentation please visit the [WordPress Login Form](https://noorsplugin.com/wordpress-login-form-plugin/) plugin page
 
 
@@ -183,6 +184,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.13 =
+* Added support for custom error add-on.
 
 = 1.0.12 =
 * Additional check for the settings link.
