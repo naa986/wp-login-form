@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WP Login Form
-Version: 1.0.13
+Version: 1.0.14
 Plugin URI: https://noorsplugin.com/wordpress-login-form-plugin/
 Author: naa986
 Author URI: https://noorsplugin.com/
@@ -14,7 +14,7 @@ if(!defined('ABSPATH')) exit;
 
 class WPLF_LOGIN_FORM
 {
-    var $plugin_version = '1.0.13';
+    var $plugin_version = '1.0.14';
     var $plugin_url;
     var $plugin_path;
     function __construct()
@@ -248,6 +248,8 @@ function wplf_login_form_handler($atts)
         'remember' => '',
         'value_username' => '',
         'value_remember' => '',
+        'required_username' => '',
+        'required_password' => '',
         'lost_password' => '',
         'label_lost_password' => '',
         'custom_error' => '',
@@ -294,6 +296,12 @@ function wplf_login_form_handler($atts)
     }
     if(isset($value_remember) && $value_remember != ""){
         $args['value_remember'] = $value_remember;
+    }
+    if(isset($required_username) && $required_username != ""){
+        $args['required_username'] = $required_username;
+    }
+    if(isset($required_password) && $required_password != ""){
+        $args['required_password'] = $required_password;
     }
     $login_form = "";
     //$login_form = print_r($args, true);

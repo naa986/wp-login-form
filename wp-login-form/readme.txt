@@ -3,8 +3,8 @@ Contributors: naa986
 Donate link: https://noorsplugin.com/wordpress-login-form-plugin/
 Tags: login, form, user, member, membership
 Requires at least: 3.0
-Tested up to: 7.0
-Stable tag: 1.0.13
+Tested up to: 7.1
+Stable tag: 1.0.14
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -133,6 +133,22 @@ Specify whether the "Remember Me" checkbox in the form should be checked by defa
 
 The default is "0" (false).
 
+**required_username**
+
+Specify whether the username field should be required by default. For example,
+
+`[wp_login_form required_username="true"]`
+
+The default is "false".
+
+**required_password**
+
+Specify whether the password field should be required by default. For example,
+
+`[wp_login_form required_password="true"]`
+
+The default is "false".
+
 **lost_password**
 
 Specify whether to display a lost password link in the form. For example,
@@ -184,6 +200,9 @@ Yes.
 none
 
 == Changelog ==
+
+= 1.0.14 =
+* Added parameters to make username and password fields required.
 
 = 1.0.13 =
 * Added support for custom error add-on.
